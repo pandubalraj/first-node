@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 SimpleBlog
 ==========
 
@@ -125,3 +126,9 @@ View Tag      /tag/<TAG>
 This is the default template
 
 ![Simple Blog](http://i.imgur.com/2MpgWnD.png)
+=======
+first-node
+==========
+
+first-node
+>>>>>>> 543b744f249d174374d68b55018a7b66a12f37fd

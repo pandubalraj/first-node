@@ -3,8 +3,7 @@ var md = require('node-markdown').Markdown;
 
 // Connect to db, localhost if no ENV vars set
 var uristring = 
-  process.env.MONGODB_URI || process.env.MONGO_URL || 'mongodb://localhost:27017/blog' ||  process.env.MONGOLAB_URI || 
-  'mongodb://localhost/HelloMongoose';
+  process.env.MONGODB_URI || process.env.MONGO_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/HelloMongoose';
 
 // Ensure safe writes
 var mongoOptions = { db: { safe: true }};

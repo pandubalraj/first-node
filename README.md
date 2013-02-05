@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 SimpleBlog
 ==========
 
@@ -131,4 +131,4 @@ first-node
 ==========
 
 first-node
->>>>>>> 543b744f249d174374d68b55018a7b66a12f37fd
+

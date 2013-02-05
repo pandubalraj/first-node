@@ -1,7 +1,25 @@
 var mongoose = require('mongoose');
 var md = require('node-markdown').Markdown;
 
-mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost:27017/blog');
+// Connect to db, localhost if no ENV vars set
+var uristring = 
+  process.env.MONGODB_URI || process.env.MONGO_URL || 'mongodb://localhost:27017/blog' ||  process.env.MONGOLAB_URI || 
+  'mongodb://localhost/HelloMongoose';
+
+// Ensure safe writes
+var mongoOptions = { db: { safe: true }};
+
+// Connect
+mongoose.connect(uristring, mongoOptions, function (err, res) {
+  if (err) { 
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + uristring);
+  }
+});
+
+
+// mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost:27017/blog');
 
 var post = new mongoose.Schema({
   title: { type: String, required: true, set: function(title) {

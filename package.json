@@ -1,0 +1,37 @@
+{
+  "name": "simple-blog",
+  "description": "A simple, session-free and extendable blogging platform.",
+  "keywords": [
+    "blog",
+    "session",
+    "fast"
+  ],
+  "version": "1.1.1",
+  "author": {
+    "name": "Pandu Balraj",
+    "email": "pandubalraj@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gschier/simple-blog"
+  },
+  "main": "simple",
+  "dependencies": {
+    "express": "3.0.5",
+    "jade": "*",
+    "stylus": "*",
+    "rss": "*",
+    "node-markdown": "*",
+    "mongoose": ">=3.0.0"
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "readme": "SimpleBlog\n==========\n\nA *simple* blogging platform built on [Node.js](http://nodejs.org/)\nand [Express.js](http://expressjs.com/) that uses\n[Markdown](http://daringfireball.net/projects/markdown/syntax) syntax\nfor posting.\n\nTo speed things up, Simple doesn't make use of user sessions. \nSince there are no sessions, there is no *admin* user. Simple makes\nall admin pages (new post, edit, etc) accessible to the public but\nrequires a master password to do anything serious.\n\n**Demo:** [My blog](http://schier.co)\n\n## Installation\n``` shell\nnpm install simple-blog\n```\n\n## Enviroment Setup\n\nYour app will need access to a [MongoDb](http://www.mongodb.org/) database\nto save posts. You can do one of the following:\n\n  - Have [MongoDb](http://www.mongodb.org/) installed locally on port 27017\n  - Set environment variable *MONGO_URL* to a remote location (ex. MongoHQ)\n\nYou can also set the password you will use to create/edit posts by setting\nthe environment variable BLOG_SECRET. The password is only required if\nNODE_ENV is set to *production* and will default to \"password\" if not\nspecified.\n\n\n## Sample Server\n\n``` js\nrequire('simple-blog').start();\n```\n\n## Server With Custom Views And Stuff\n\nSimple Uses [Express.js](http://expressjs.com/) for a backend so\nsetup is very simple.\n\n### Copy template and public directories\nSimple comes with a default template but I'm sure you'll want to\nmake your own. To make sure you have everything you need to get\nstarted you can copy the sample files from the module by doing\nthe following:\n\n```\n$ cd myApp/\n$ cp -r node_modules/simple-blog/public ./\n$ cp -r node_modules/simple-blog/views ./\n```\n\n### Point Simple To The Layout Files\n\nTo prevent Simple from using it's sample files, call the *setup()*\nfunction in your main app script.\n\n``` js\nvar simple = require('simple-blog');\n\n// ALL PARAMETERS ARE OPTIONAL\nsimple.setup({\n  name: 'Test Blog', // Blog Title\n\n  // Path to the root of your app\n  rootDir: __dirname,\n\n  // Path to Express.js directories\n  publicPath: '/public',\n  viewPath: '/views',\n\n  // Redirect www.domain... to domain...\n  redirectWWW: true,\n\n  /*************************************************\n   * The rest is used for the RSS feed\n   */\n\n  // Disable RSS\n  // rss: false,\n\n  // Enable RSS at /rss.xml (defaults to disabled)\n  rss: {\n    description: 'A test blog to showcase simple-blog',\n    author: 'Gregory Schier',\n    img: '/favicon.ico', // Feed image\n    limit: 10 // Feed item cutoff\n  }\n});\n\n// Add custom routes the same as you would with Express.js\nsimple.app.get('/about', function(req, res) {\n  res.render('about', { title: 'About' });\n});\n\n// Start Simple Blog\nsimple.start();\n```\n\n## User Guide\n\nSince Simple doesn't use sessions it doesn't know who the admin is. To\nkeep people from finding the admin pages they are only accessable by\ndirect url. Here is what you need to know:\n\n```\n// Admin stuff\nNew post      /new\nedit post     /edit/posts/<POST SLUG>\n\n// General stuff\nHome          /\nPagination    /?p=1\nView Post     /posts/<POST SLUG>\nView Tag      /tag/<TAG>\n```\n\n## Screenshots\n\nThis is the default template\n\n![Simple Blog](http://i.imgur.com/2MpgWnD.png)\n",
+  "readmeFilename": "README.md",
+  "_id": "simple-blog@1.1.1",
+  "dist": {
+    "shasum": "48ad10681121767f25704d4d500dece69348a117"
+  },
+  "_from": "simple-blog"
+}
